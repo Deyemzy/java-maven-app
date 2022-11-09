@@ -23,10 +23,12 @@ pipeline {
                 }
             }
         }
-        stage("build image") {
+        stage("build and push image") {
             steps {
                 script {
                     buildImage 'deyemzy/my-repo:jma-3.0'
+                    dockerLogin()
+                    dockerPush 'deyemzy/my-repo:jma-3.0'
                 }
             }
         }
